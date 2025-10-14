@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
@@ -69,7 +70,7 @@ h3{font-family:Montserrat;margin-bottom:10px;font-size:1.4rem}
 .service:hover{transform:translateY(-5px);box-shadow:0 12px 24px rgba(0,0,0,0.12)}
 .service i{font-size:22px;color:var(--accent);min-width:36px;text-align:center}
 
-/* Packs */
+/* Packs & comparaison */
 .packs-compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;align-items:start}
 .pack{background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow);transition:all .3s ease;cursor:pointer;position:relative}
 .pack:hover{transform:translateY(-5px);box-shadow:0 12px 24px rgba(0,0,0,0.12)}
@@ -102,7 +103,7 @@ h3{font-family:Montserrat;margin-bottom:10px;font-size:1.4rem}
 /* New: Market news / Live stats / Share */
 .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
 .news-card{background:var(--card);padding:18px;border-radius:10px;box-shadow:var(--shadow)}
-.news-card h4{margin:0 0 8px}
+.news-card:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(0,0,0,0.12)}
 .live-indicator{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
 .live-box{background:var(--card);padding:20px;border-radius:10px;box-shadow:var(--shadow);text-align:center;min-width:140px}
 .share-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;justify-content:center}
@@ -132,12 +133,10 @@ footer{Padding:28px 20px;background:#111827;color:white;margin-top:30px;text-ali
 .modal-close{position:absolute;right:12px;top:10px;font-weight:700;color:var(--accent);cursor:pointer;font-size:20px;transition:all .25s}
 .modal-close:hover{color:var(--text);transform:rotate(90deg)}
 
-/* Forms */
 form{display:flex;flex-direction:column;gap:10px}
 input,select,textarea{padding:10px;border-radius:8px;border:1px solid rgba(16,24,40,0.06);font-size:0.95rem}
 textarea{min-height:84px;resize:vertical}
 
-/* Responsive */
 @media(max-width:980px){
   .hero-inner{grid-template-columns:1fr}
   .services-grid{grid-template-columns:1fr}
@@ -151,20 +150,13 @@ textarea{min-height:84px;resize:vertical}
   .method-grid{grid-template-columns:1fr}
 }
 
-/* Micro animations */
 .fade-up{opacity:0;transform:translateY(8px);transition:opacity .6s ease, transform .6s ease}
 .fade-up.show{opacity:1;transform:none}
 
-/* --- Market news carousel styles --- */
-.news-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(18,23,44,0.12);
-}
-.carousel-btn:hover {
-  opacity: 0.85;
-}
 .news-card.fade-up {opacity:0;transform:translateY(8px);transition:opacity .6s ease, transform .6s ease}
-.news-card.fade-up.show {opacity:1;transform:none;}
+.news-card.fade-up.show {opacity:1;transform:none}
+
+/* Micro animations & carousel etc. */
 </style>
 </head>
 
@@ -228,7 +220,7 @@ textarea{min-height:84px;resize:vertical}
         <div style="font-size:20px;font-weight:700">1 650 €</div>
       </div>
       <div class="stat fade-up">
-        <div style="font-size:12px;color:var(--muted)">Taux d'occupation</div>
+        <div style="font-size:12px;color:var(--muted)">Taux d’occupation</div>
         <div style="font-size:20px;font-weight:700">78%</div>
       </div>
       <div class="stat fade-up">
@@ -242,7 +234,7 @@ textarea{min-height:84px;resize:vertical}
 <!-- SERVICES -->
 <section id="services" class="container">
   <h3>Nos services</h3>
-  <p class="lead">Prise en charge complète : accueil, ménage, optimisation d'annonce, maintenance locale et support voyageurs.</p>
+  <p class="lead">Prise en charge complète : accueil, ménage, optimisation d’annonce, maintenance locale et support voyageurs.</p>
   <div class="services-grid">
     <div class="service fade-up">
       <i class="fas fa-key" aria-hidden="true"></i>
@@ -316,7 +308,7 @@ textarea{min-height:84px;resize:vertical}
 <!-- MARKET NEWS CAROUSEL -->
 <section id="news" class="container fade-up">
   <h3>Actualités du marché</h3>
-  <p class="lead">Les tendances récentes et ce qu'elles signifient pour vos revenus locatifs en Île-de-France.</p>
+  <p class="lead">Les tendances récentes et ce qu’elles signifient pour vos revenus locatifs en Île-de-France.</p>
   <div class="news-carousel" style="position:relative;overflow:hidden;">
     <button class="carousel-btn carousel-prev" aria-label="Précédent" style="position:absolute;top:50%;left:0;transform:translateY(-50%);background:var(--accent);color:white;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;z-index:10;"><i class="fas fa-chevron-left"></i></button>
     <div class="news-carousel-track" style="display:flex;gap:20px;transition:transform .4s ease;">
@@ -510,18 +502,18 @@ setInterval(() => {
   document.getElementById('liveClients').innerText = `${cli}`;
 }, 1000);
 
-// === AJOUT ICI : Boutons estimation, packs et “Nous contacter” ===
+// Activation des boutons
 document.getElementById('ctaEstimate').addEventListener('click', function() {
   document.getElementById('estimateModal').classList.add('show');
 });
 document.getElementById('ctaPacks').addEventListener('click', function() {
   document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
 });
-// Activation du bouton “Nous contacter”
 document.getElementById('ctaContact').addEventListener('click', function() {
   document.getElementById('contactModal').classList.add('show');
 });
 </script>
 </body>
 </html>
+
 
