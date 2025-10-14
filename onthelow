@@ -21,16 +21,6 @@
   --radius:14px;
   --maxw:1100px;
 }
-
-/* fix GitHub Pages layout */
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Inter, Montserrat, system-ui;line-height:1.45;-webkit-font-smoothing:antialiased}
@@ -60,7 +50,7 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
 /* Hero */
 .hero{position:relative;min-height:72vh;display:flex;align-items:center;justify-content:center;padding:60px 20px;overflow:hidden;}
 
-/* iframe background: enlarged to avoid black bars, non-interactive */
+/* ---- ADDED: iframe background styles (keeps video behind content, non-interactive) ---- */
 .hero .bg-iframe {
   position:absolute;
   top:0;
@@ -74,22 +64,21 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
   position:absolute;
   top:50%;
   left:50%;
-  width:135%;
-  height:135%;
+  width:145%;
+  height:145%;
   transform:translate(-50%,-50%);
-  pointer-events:none; /* disable interaction */
+  pointer-events:none; /* disables interaction completely */
   border:0;
-  filter:brightness(0.85);
+  filter:brightness(1);
 }
-
-/* overlay (keeps original look) */
-.hero::after{
+.hero::after{ /* keep your original gradient overlay effect */
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(135deg, rgba(255,90,95,0.25), rgba(245,182,66,0.25));
   z-index:1;
 }
+/* ---- END ADDED ---- */
 
 .hero-inner{max-width:var(--maxw);width:100%;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;position:relative;z-index:2}
 .hero-card{background:var(--card);padding:36px;border-radius:var(--radius);box-shadow:var(--shadow)}
@@ -224,15 +213,15 @@ textarea{min-height:84px;resize:vertical}
 
 <!-- HERO -->
 <section class="hero" aria-label="Hero StaynB">
-  <!-- background iframe using youtube-nocookie to avoid suggestions/ads; loop via playlist param -->
+  <!-- REPLACED: background video (iframe YouTube, autoplay, muted, loop) -->
   <div class="bg-iframe" aria-hidden="true">
     <iframe
-      src="https://www.youtube-nocookie.com/embed/_iZ-vMCeH9U?autoplay=1&mute=1&loop=1&playlist=_iZ-vMCeH9U&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0"
-      frameborder="0"
-      allow="autoplay; fullscreen"
-      allowfullscreen
-      title="Paris background">
-    </iframe>
+  src="https://www.youtube-nocookie.com/embed/_iZ-vMCeH9U?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&playsinline=1&loop=1&playlist=_iZ-vMCeH9U"
+  frameborder="0"
+  allow="autoplay; fullscreen"
+  allowfullscreen
+  title="Paris background">
+</iframe>
   </div>
 
   <div class="hero-inner container" style="position:relative;z-index:2">
@@ -502,18 +491,15 @@ textarea{min-height:84px;resize:vertical}
 // Modal control
 function openBookingForm(pack){
   document.getElementById('bookingModal').classList.add('show');
-  const sel = document.querySelector('#bookingModal select');
-  if(sel) sel.value = pack;
+  document.querySelector('#bookingModal select').value = pack;
 }
 function closeModal(id){
-  const el = document.getElementById(id);
-  if(el) el.classList.remove('show');
+  document.getElementById(id).classList.remove('show');
 }
 
 // Back to top
 window.addEventListener('scroll',()=>{
-  const bt = document.querySelector('.backtop');
-  if(bt) bt.style.display = window.scrollY > 200 ? 'flex' : 'none';
+  document.querySelector('.backtop').style.display = window.scrollY > 200 ? 'flex' : 'none';
 });
 
 // Carousel
@@ -521,10 +507,14 @@ let track = document.querySelector('.news-carousel-track');
 let index = 0;
 const total = track ? track.children.length : 0;
 if(track){
-  const next = document.querySelector('.carousel-next');
-  const prev = document.querySelector('.carousel-prev');
-  if(next) next.onclick = () => { index = (index + 1) % total; track.style.transform = `translateX(${-index * 320}px)`; };
-  if(prev) prev.onclick = () => { index = (index - 1 + total) % total; track.style.transform = `translateX(${-index * 320}px)`; };
+  document.querySelector('.carousel-next').onclick = () => {
+    index = (index + 1) % total;
+    track.style.transform = `translateX(${-index * 320}px)`;
+  };
+  document.querySelector('.carousel-prev').onclick = () => {
+    index = (index - 1 + total) % total;
+    track.style.transform = `translateX(${-index * 320}px)`;
+  };
 }
 
 // Fade-up animation
