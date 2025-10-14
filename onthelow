@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
@@ -120,16 +119,16 @@ h3{font-family:Montserrat;margin-bottom:10px;font-size:1.4rem}
 .partner-card.google{background:#4285F4}
 
 /* Footer */
-footer{padding:28px 20px;background:#111827;color:white;margin-top:30px;text-align:center}
+footer{Padding:28px 20px;background:#111827;color:white;margin-top:30px;text-align:center}
 
 /* Back to top */
 .backtop{position:fixed;right:18px;bottom:18px;background:linear-gradient(135deg,var(--text),var(--accent));color:white;padding:12px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);cursor:pointer;z-index:1400;display:none}
 
 /* Modals */
-#estimateModal,#bookingModal{display:flex;justify-content:center;align-items:center;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;padding:18px;opacity:0;pointer-events:none;transition:opacity .28s ease}
-#estimateModal.show,#bookingModal.show{opacity:1;pointer-events:all}
+#estimateModal,#bookingModal,#contactModal{display:flex;justify-content:center;align-items:center;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;padding:18px;opacity:0;pointer-events:none;transition:opacity .28s ease}
+#estimateModal.show,#bookingModal.show,#contactModal.show{opacity:1;pointer-events:all}
 .modal-box{background:var(--card);border-radius:12px;max-width:600px;width:100%;padding:20px;position:relative;transform:scale(.96);transition:transform .28s ease,box-shadow .28s ease;box-shadow:0 18px 48px rgba(18,23,44,0.12)}
-#estimateModal.show .modal-box,#bookingModal.show .modal-box{transform:scale(1)}
+#estimateModal.show .modal-box,#bookingModal.show .modal-box,#contactModal.show .modal-box{transform:scale(1)}
 .modal-close{position:absolute;right:12px;top:10px;font-weight:700;color:var(--accent);cursor:pointer;font-size:20px;transition:all .25s}
 .modal-close:hover{color:var(--text);transform:rotate(90deg)}
 
@@ -186,7 +185,7 @@ textarea{min-height:84px;resize:vertical}
     <a href="#about">À propos</a>
     <a href="#news">Actualités</a>
     <a href="#share">Partager</a>
-    <button class="cta-quick" id="contactQuick">Nous contacter</button>
+    <button class="cta-quick" id="ctaContact">Nous contacter</button>
   </nav>
 </header>
 
@@ -446,6 +445,19 @@ textarea{min-height:84px;resize:vertical}
   </div>
 </div>
 
+<div id="contactModal">
+  <div class="modal-box">
+    <span class="modal-close" onclick="closeModal('contactModal')">&times;</span>
+    <h3>Nous contacter</h3>
+    <form>
+      <input type="text" placeholder="Nom complet" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Votre message" required></textarea>
+      <button class="btn btn-primary" type="submit">Envoyer</button>
+    </form>
+  </div>
+</div>
+
 <script>
 // Modal control
 function openBookingForm(pack){
@@ -457,31 +469,59 @@ function closeModal(id){
 }
 
 // Back to top
-window.addEventListener('scroll',()=>{document.querySelector('.backtop').style.display=window.scrollY>200?'flex':'none'});
+window.addEventListener('scroll',()=>{
+  document.querySelector('.backtop').style.display = window.scrollY > 200 ? 'flex' : 'none';
+});
 
 // Carousel
-let track=document.querySelector('.news-carousel-track');let index=0;const total=track.children.length;
-document.querySelector('.carousel-next').onclick=()=>{index=(index+1)%total;track.style.transform=`translateX(${-index*320}px)`;}
-document.querySelector('.carousel-prev').onclick=()=>{index=(index-1+total)%total;track.style.transform=`translateX(${-index*320}px)`;}
+let track = document.querySelector('.news-carousel-track');
+let index = 0;
+const total = track.children.length;
+document.querySelector('.carousel-next').onclick = () => {
+  index = (index + 1) % total;
+  track.style.transform = `translateX(${-index * 320}px)`;
+};
+document.querySelector('.carousel-prev').onclick = () => {
+  index = (index - 1 + total) % total;
+  track.style.transform = `translateX(${-index * 320}px)`;
+};
 
 // Fade-up animation
-const faders=document.querySelectorAll('.fade-up');
-const options={threshold:0.2};
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target);}
+const faders = document.querySelectorAll('.fade-up');
+const options = { threshold: 0.2 };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    }
   });
-},options);
-faders.forEach(fader=>observer.observe(fader));
+}, options);
+faders.forEach(fader => observer.observe(fader));
 
 // Live stats simulation
-let rev=0,occ=0,cli=0;
-setInterval(()=>{
-  rev=Math.min(1650,rev+Math.floor(Math.random()*20));occ=Math.min(78,occ+Math.random()*0.5);cli=Math.min(120,cli+1);
-  document.getElementById('liveRevenue').innerText=`${rev} €`;
-  document.getElementById('liveOccupancy').innerText=`${occ.toFixed(1)}%`;
-  document.getElementById('liveClients').innerText=`${cli}`;
-},1000);
+let rev = 0, occ = 0, cli = 0;
+setInterval(() => {
+  rev = Math.min(1650, rev + Math.floor(Math.random() * 20));
+  occ = Math.min(78, occ + Math.random() * 0.5);
+  cli = Math.min(120, cli + 1);
+  document.getElementById('liveRevenue').innerText = `${rev} €`;
+  document.getElementById('liveOccupancy').innerText = `${occ.toFixed(1)}%`;
+  document.getElementById('liveClients').innerText = `${cli}`;
+}, 1000);
+
+// === AJOUT ICI : Boutons estimation, packs et “Nous contacter” ===
+document.getElementById('ctaEstimate').addEventListener('click', function() {
+  document.getElementById('estimateModal').classList.add('show');
+});
+document.getElementById('ctaPacks').addEventListener('click', function() {
+  document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+});
+// Activation du bouton “Nous contacter”
+document.getElementById('ctaContact').addEventListener('click', function() {
+  document.getElementById('contactModal').classList.add('show');
+});
 </script>
 </body>
 </html>
+
