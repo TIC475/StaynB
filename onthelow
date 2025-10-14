@@ -216,7 +216,7 @@ textarea{min-height:84px;resize:vertical}
   <!-- REPLACED: background video (iframe YouTube, autoplay, muted, loop) -->
   <div class="bg-iframe" aria-hidden="true">
     <iframe
-  src="https://www.youtube.com/embed/_iZ-vMCeH9U?autoplay=1&mute=1&loop=1&playlist=_iZ-vMCeH9U&controls=0&showinfo=0&modestbranding=1&playsinline=1"
+  src="https://www.youtube.com/embed/_iZ-vMCeH9U?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&playsinline=1&loop=1&playlist=_iZ-vMCeH9U"
   frameborder="0"
   allow="autoplay; fullscreen"
   allowfullscreen
@@ -563,5 +563,3 @@ if(ctaContact) ctaContact.addEventListener('click', function() {
 </script>
 </body>
 </html>
-
-
