@@ -50,6 +50,37 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
 
 /* Hero */
 .hero{position:relative;min-height:72vh;display:flex;align-items:center;justify-content:center;padding:60px 20px;overflow:hidden;}
+
+/* ---- ADDED: iframe background styles (keeps video behind content, non-interactive) ---- */
+.hero .bg-iframe {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  overflow:hidden;
+}
+.hero .bg-iframe iframe{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:145%;
+  height:145%;
+  transform:translate(-50%,-50%);
+  pointer-events:none; /* disables interaction completely */
+  border:0;
+  filter:brightness(1);
+}
+.hero::after{ /* keep your original gradient overlay effect */
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(255,90,95,0.25), rgba(245,182,66,0.25));
+  z-index:1;
+}
+/* ---- END ADDED ---- */
+
 .hero-inner{max-width:var(--maxw);width:100%;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;position:relative;z-index:2}
 .hero-card{background:var(--card);padding:36px;border-radius:var(--radius);box-shadow:var(--shadow)}
 .hero h2{font-family:Montserrat;font-size:1.6rem;margin:0 0 12px}
@@ -183,10 +214,17 @@ textarea{min-height:84px;resize:vertical}
 
 <!-- HERO -->
 <section class="hero" aria-label="Hero StaynB">
-  <video autoplay muted loop playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;" aria-hidden="true">
-    <source src="https://www.videvo.net/videvo_files/converted/2016_08/preview/150626_B_030_Hotel_Lobby.mp423658.webm" type="video/webm">
-  </video>
-  <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(255,90,95,0.25), rgba(245,182,66,0.25));z-index:1;" aria-hidden="true"></div>
+  <!-- REPLACED: background video (iframe YouTube, autoplay, muted, loop) -->
+  <div class="bg-iframe" aria-hidden="true">
+    <iframe
+  src="https://www.youtube.com/embed/_iZ-vMCeH9U?autoplay=1&mute=1&loop=1&playlist=_iZ-vMCeH9U&controls=0&showinfo=0&modestbranding=1&playsinline=1"
+  frameborder="0"
+  allow="autoplay; fullscreen"
+  allowfullscreen
+  title="Paris background">
+</iframe>
+  </div>
+
   <div class="hero-inner container" style="position:relative;z-index:2">
     <div class="hero-card fade-up">
       <h2>Gérez vos locations sans stress — maximisez vos revenus et offrez une expérience mémorable.</h2>
@@ -468,15 +506,17 @@ window.addEventListener('scroll',()=>{
 // Carousel
 let track = document.querySelector('.news-carousel-track');
 let index = 0;
-const total = track.children.length;
-document.querySelector('.carousel-next').onclick = () => {
-  index = (index + 1) % total;
-  track.style.transform = `translateX(${-index * 320}px)`;
-};
-document.querySelector('.carousel-prev').onclick = () => {
-  index = (index - 1 + total) % total;
-  track.style.transform = `translateX(${-index * 320}px)`;
-};
+const total = track ? track.children.length : 0;
+if(track){
+  document.querySelector('.carousel-next').onclick = () => {
+    index = (index + 1) % total;
+    track.style.transform = `translateX(${-index * 320}px)`;
+  };
+  document.querySelector('.carousel-prev').onclick = () => {
+    index = (index - 1 + total) % total;
+    track.style.transform = `translateX(${-index * 320}px)`;
+  };
+}
 
 // Fade-up animation
 const faders = document.querySelectorAll('.fade-up');
@@ -497,23 +537,33 @@ setInterval(() => {
   rev = Math.min(1650, rev + Math.floor(Math.random() * 20));
   occ = Math.min(78, occ + Math.random() * 0.5);
   cli = Math.min(120, cli + 1);
-  document.getElementById('liveRevenue').innerText = `${rev} €`;
-  document.getElementById('liveOccupancy').innerText = `${occ.toFixed(1)}%`;
-  document.getElementById('liveClients').innerText = `${cli}`;
+  const revEl = document.getElementById('liveRevenue');
+  const occEl = document.getElementById('liveOccupancy');
+  const cliEl = document.getElementById('liveClients');
+  if(revEl) revEl.innerText = `${rev} €`;
+  if(occEl) occEl.innerText = `${occ.toFixed(1)}%`;
+  if(cliEl) cliEl.innerText = `${cli}`;
 }, 1000);
 
 // Activation des boutons
-document.getElementById('ctaEstimate').addEventListener('click', function() {
-  document.getElementById('estimateModal').classList.add('show');
+const ctaEstimate = document.getElementById('ctaEstimate');
+if(ctaEstimate) ctaEstimate.addEventListener('click', function() {
+  const em = document.getElementById('estimateModal');
+  if(em) em.classList.add('show');
 });
-document.getElementById('ctaPacks').addEventListener('click', function() {
-  document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+const ctaPacks = document.getElementById('ctaPacks');
+if(ctaPacks) ctaPacks.addEventListener('click', function() {
+  const pricing = document.getElementById('pricing');
+  if(pricing) pricing.scrollIntoView({ behavior: 'smooth' });
 });
-document.getElementById('ctaContact').addEventListener('click', function() {
-  document.getElementById('contactModal').classList.add('show');
+const ctaContact = document.getElementById('ctaContact');
+if(ctaContact) ctaContact.addEventListener('click', function() {
+  const cm = document.getElementById('contactModal');
+  if(cm) cm.classList.add('show');
 });
 </script>
 </body>
 </html>
+
 
 
