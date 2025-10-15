@@ -219,7 +219,7 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:40px">
       <div style="background:var(--card);padding:36px;border-radius:var(--radius);box-shadow:var(--shadow)">
         <h3>Pack Essentiel</h3>
-        <p style="font-size:1.3rem;font-weight:700;color:var(--accent-2)">20 % de commission</p>
+        <p style="font-size:1.3rem;font-weight:700;color:var(--accent-2)">15 % de commission</p>
         <ul style="list-style:none;padding:0;text-align:left;line-height:1.8">
           <li>✔ Accueil & remise des clés</li>
           <li>✔ Ménage & linge</li>
@@ -230,7 +230,7 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
 
       <div style="background:var(--card);padding:36px;border-radius:var(--radius);box-shadow:var(--shadow);border:2px solid var(--accent-2)">
         <h3>Pack Premium</h3>
-        <p style="font-size:1.3rem;font-weight:700;color:var(--accent-2)">25 % de commission</p>
+        <p style="font-size:1.3rem;font-weight:700;color:var(--accent-2)">20 % de commission</p>
         <ul style="list-style:none;padding:0;text-align:left;line-height:1.8">
           <li>✔ Tous les services du pack Essentiel</li>
           <li>✔ Optimisation des prix</li>
@@ -241,7 +241,7 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
 
       <div style="background:var(--card);padding:36px;border-radius:var(--radius);box-shadow:var(--shadow)">
         <h3>Pack Luxe</h3>
-        <p style="font-size:1.3rem;font-weight:700;color:var(--accent-2)">30 % de commission</p>
+        <p style="font-size:1.3rem;font-weight:700;color:var(--accent-2)">25 % de commission</p>
         <ul style="list-style:none;padding:0;text-align:left;line-height:1.8">
           <li>✔ Tous les services du pack Premium</li>
           <li>✔ Décoration & valorisation du bien</li>
@@ -435,6 +435,7 @@ document.addEventListener("DOMContentLoaded", function() {
         formMsg.style.display = "none";
         formStaynB.reset();
         document.getElementById("popupForm").style.display = "none";
+        document.body.style.overflow = ''; // ✅ réactive le scroll
       }, 2000);
     })
     .catch(function(error) {
