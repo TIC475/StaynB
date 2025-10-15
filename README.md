@@ -385,13 +385,6 @@ function closePopup(){
   formMsg.style.display = 'none';
 }
 
-// Soumission du formulaire (simulation)
-form.onsubmit = (e)=>{
-  e.preventDefault();
-  formMsg.style.display = 'block';
-  setTimeout(()=>closePopup(), 2000);
-};
-
 // Bouton retour haut
 const btnTop = document.getElementById('backToTop');
 window.addEventListener('scroll', ()=>{
@@ -423,6 +416,13 @@ fadeEls.forEach(el=>observer.observe(el));
 
   form.addEventListener("submit", function(e) {
     e.preventDefault();
+    
+    console.log("📤 Tentative d'envoi EmailJS avec : ", {
+  from_name: form.nom.value,
+  from_email: form.email.value,
+  pack: form.pack.value,
+  message: form.message.value,
+});
 
     // Envoi EmailJS avec ton service et template
     emailjs.send("service_4rt1ri7", "template_0e03vni", {
@@ -432,7 +432,7 @@ fadeEls.forEach(el=>observer.observe(el));
       message: form.message.value,
     })
     .then(function(response) {
-      console.log("SUCCESS", response.status, response.text);
+      console.log("✅ Réponse EmailJS :", response);
       formMsg.style.display = "block";
       setTimeout(() => {
         formMsg.style.display = "none";
@@ -440,7 +440,7 @@ fadeEls.forEach(el=>observer.observe(el));
         document.getElementById("popupForm").style.display = "none";
       }, 2000);
     }, function(error) {
-      console.error("Erreur EmailJS :", error);
+      console.error("❌ Erreur EmailJS :", error);
       alert("❌ Erreur lors de l’envoi, vérifie la console.");
     });
   });
