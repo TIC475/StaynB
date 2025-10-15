@@ -50,7 +50,7 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
 /* Hero */
 .hero{position:relative;min-height:72vh;display:flex;align-items:center;justify-content:center;padding:60px 20px;overflow:hidden;}
 
-/* ---- ADDED: iframe background styles (keeps video behind content, non-interactive) ---- */
+/* === NOUVEAU : vidéo auto-hébergée en fond === */
 .hero .bg-iframe {
   position:absolute;
   top:0;
@@ -60,25 +60,24 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
   z-index:0;
   overflow:hidden;
 }
-.hero .bg-iframe iframe{
+.hero .bg-iframe video{
   position:absolute;
   top:50%;
   left:50%;
   width:145%;
   height:145%;
+  object-fit:cover;
   transform:translate(-50%,-50%);
-  pointer-events:none; /* disables interaction completely */
   border:0;
   filter:brightness(1);
 }
-.hero::after{ /* keep your original gradient overlay effect */
+.hero::after{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(135deg, rgba(255,90,95,0.25), rgba(245,182,66,0.25));
   z-index:1;
 }
-/* ---- END ADDED ---- */
 
 .hero-inner{max-width:var(--maxw);width:100%;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;position:relative;z-index:2}
 .hero-card{background:var(--card);padding:36px;border-radius:var(--radius);box-shadow:var(--shadow)}
@@ -88,105 +87,16 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
 .hero-side{display:flex;flex-direction:column;gap:12px}
 .stat{background:linear-gradient(180deg, rgba(255,255,255,0.9), #fff);padding:14px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(18,23,44,0.04)}
 
-/* Sections */
-section{padding:56px 20px}
-.container{max-width:var(--maxw);margin:0 auto}
-h3{font-family:Montserrat;margin-bottom:10px;font-size:1.4rem}
-.lead{color:var(--muted);max-width:780px;margin-bottom:18px}
-
-/* Services */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.service{background:var(--card);padding:22px;border-radius:12px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;transition:all .3s ease;cursor:pointer}
-.service:hover{transform:translateY(-5px);box-shadow:0 12px 24px rgba(0,0,0,0.12)}
-.service i{font-size:22px;color:var(--accent);min-width:36px;text-align:center}
-
-/* Packs & comparaison */
-.packs-compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;align-items:start}
-.pack{background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow);transition:all .3s ease;cursor:pointer;position:relative}
-.pack:hover{transform:translateY(-5px);box-shadow:0 12px 24px rgba(0,0,0,0.12)}
-.pack.recommended::after{
-  content:"Recommandé";
-  position:absolute;
-  top:12px;
-  right:12px;
-  background:#FFB67B;
-  color:#111;
-  font-weight:700;
-  font-size:0.85rem;
-  padding:6px 10px;
-  border-radius:12px;
+/* Animation fade-up */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
 }
-.features{list-style:none;padding:0;margin:12px 0 0}
-.features li{padding:6px 0;border-top:1px dashed rgba(0,0,0,0.04);color:var(--muted);font-size:0.95rem}
-.pack-cta{display:flex;gap:8px;margin-top:14px;align-items:center}
-
-/* About / method */
-.method-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
-.step{background:var(--card);padding:14px;border-radius:10px;text-align:center;box-shadow:0 6px 18px rgba(18,23,44,0.04)}
-
-/* Reviews */
-.reviews{display:flex;gap:12px;align-items:center;overflow-x:auto;padding-bottom:8px}
-.review-card{background:var(--card);padding:18px;border-radius:10px;min-width:260px;box-shadow:var(--shadow);transition:all .3s ease;cursor:pointer}
-.review-card:hover{transform:translateY(-5px);box-shadow:0 12px 24px rgba(0,0,0,0.12)}
-.review-card .stars{color:var(--accent);font-weight:700;margin-top:6px}
-
-/* New: Market news / Live stats / Share */
-.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.news-card{background:var(--card);padding:18px;border-radius:10px;box-shadow:var(--shadow)}
-.news-card:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(0,0,0,0.12)}
-.live-indicator{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
-.live-box{background:var(--card);padding:20px;border-radius:10px;box-shadow:var(--shadow);text-align:center;min-width:140px}
-.share-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;justify-content:center}
-.share-buttons a{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:8px;color:white;font-weight:600;text-decoration:none}
-.share-facebook{background:#1877F2}
-.share-twitter{background:#1DA1F2}
-.share-linkedin{background:#0077B5}
-
-/* Partners */
-.partners{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;align-items:center}
-.partner-card{display:flex;align-items:center;gap:12px;padding:14px 22px;border-radius:20px;text-decoration:none;color:white;font-weight:600;transition:all .3s ease;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
-.partner-card img{height:28px}
-.partner-card.airbnb{background:#FF5A5F}
-.partner-card.google{background:#4285F4}
-
-/* Footer */
-footer{Padding:28px 20px;background:#111827;color:white;margin-top:30px;text-align:center}
-
-/* Back to top */
-.backtop{position:fixed;right:18px;bottom:18px;background:linear-gradient(135deg,var(--text),var(--accent));color:white;padding:12px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);cursor:pointer;z-index:1400;display:none}
-
-/* Modals */
-#estimateModal,#bookingModal,#contactModal{display:flex;justify-content:center;align-items:center;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;padding:18px;opacity:0;pointer-events:none;transition:opacity .28s ease}
-#estimateModal.show,#bookingModal.show,#contactModal.show{opacity:1;pointer-events:all}
-.modal-box{background:var(--card);border-radius:12px;max-width:600px;width:100%;padding:20px;position:relative;transform:scale(.96);transition:transform .28s ease,box-shadow .28s ease;box-shadow:0 18px 48px rgba(18,23,44,0.12)}
-#estimateModal.show .modal-box,#bookingModal.show .modal-box,#contactModal.show .modal-box{transform:scale(1)}
-.modal-close{position:absolute;right:12px;top:10px;font-weight:700;color:var(--accent);cursor:pointer;font-size:20px;transition:all .25s}
-.modal-close:hover{color:var(--text);transform:rotate(90deg)}
-
-form{display:flex;flex-direction:column;gap:10px}
-input,select,textarea{padding:10px;border-radius:8px;border:1px solid rgba(16,24,40,0.06);font-size:0.95rem}
-textarea{min-height:84px;resize:vertical}
-
-@media(max-width:980px){
-  .hero-inner{grid-template-columns:1fr}
-  .services-grid{grid-template-columns:1fr}
-  .packs-compare{grid-template-columns:1fr}
-  .method-grid{grid-template-columns:repeat(2,1fr)}
-  .news-grid{grid-template-columns:1fr}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
-@media(max-width:600px){
-  nav{display:none}
-  header{padding:10px}
-  .method-grid{grid-template-columns:1fr}
-}
-
-.fade-up{opacity:0;transform:translateY(8px);transition:opacity .6s ease, transform .6s ease}
-.fade-up.show{opacity:1;transform:none}
-
-.news-card.fade-up {opacity:0;transform:translateY(8px);transition:opacity .6s ease, transform .6s ease}
-.news-card.fade-up.show {opacity:1;transform:none}
-
-/* Micro animations & carousel etc. */
 </style>
 </head>
 
@@ -213,15 +123,13 @@ textarea{min-height:84px;resize:vertical}
 
 <!-- HERO -->
 <section class="hero" aria-label="Hero StaynB">
-  <!-- REPLACED: background video (iframe YouTube, autoplay, muted, loop) -->
+  <!-- ✅ Vidéo auto-hébergée à la place de YouTube -->
   <div class="bg-iframe" aria-hidden="true">
-    <iframe
-  src="https://www.youtube-nocookie.com/embed/_iZ-vMCeH9U?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&playsinline=1&loop=1&playlist=_iZ-vMCeH9U"
-  frameborder="0"
-  allow="autoplay; fullscreen"
-  allowfullscreen
-  title="Paris background">
-</iframe>
+    <video autoplay muted loop playsinline poster="media/fallback.jpg">
+      <source src="media/paris-bg.mp4" type="video/mp4">
+      <source src="media/paris-bg.webm" type="video/webm">
+      Votre navigateur ne supporte pas la vidéo.
+    </video>
   </div>
 
   <div class="hero-inner container" style="position:relative;z-index:2">
@@ -258,7 +166,7 @@ textarea{min-height:84px;resize:vertical}
       </div>
       <div class="stat fade-up">
         <div style="font-size:12px;color:var(--muted)">Taux d’occupation</div>
-        <div style="font-size:20px;font-weight:700">78%</div>
+        <div style="font-size:20px;font-weight:700">78 %</div>
       </div>
       <div class="stat fade-up">
         <div style="font-size:12px;color:var(--muted)">Clients satisfaits</div>
@@ -269,297 +177,291 @@ textarea{min-height:84px;resize:vertical}
 </section>
 
 <!-- SERVICES -->
-<section id="services" class="container">
-  <h3>Nos services</h3>
-  <p class="lead">Prise en charge complète : accueil, ménage, optimisation d’annonce, maintenance locale et support voyageurs.</p>
-  <div class="services-grid">
-    <div class="service fade-up">
-      <i class="fas fa-key" aria-hidden="true"></i>
-      <div>
-        <h4 style="margin:0 0 6px">Accueil & check-in</h4>
-        <div style="color:var(--muted)">Remise des clés, accueil personnalisé et guidance locale pour vos voyageurs.</div>
-      </div>
-    </div>
-    <div class="service fade-up" style="transition-delay:.07s">
-      <i class="fas fa-broom" aria-hidden="true"></i>
-      <div>
-        <h4 style="margin:0 0 6px">Ménage & linge</h4>
-        <div style="color:var(--muted)">Équipes professionnelles, contrôle qualité et gestion du linge entre chaque réservation.</div>
-      </div>
-    </div>
-    <div class="service fade-up" style="transition-delay:.14s">
-      <i class="fas fa-chart-line" aria-hidden="true"></i>
-      <div>
-        <h4 style="margin:0 0 6px">Optimisation & pricing</h4>
-        <div style="color:var(--muted)">Tarification dynamique, photos pro et optimisation des annonces pour maximiser vos revenus.</div>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="services" aria-label="Nos services" style="padding:80px 20px;background:var(--card)">
+  <div style="max-width:var(--maxw);margin:0 auto;text-align:center">
+    <h2 style="font-family:Montserrat;font-size:2rem;margin-bottom:10px">Nos services</h2>
+    <p style="color:var(--muted);max-width:700px;margin:0 auto 40px">Une gestion complète de votre location courte durée, de l’annonce à l’entretien, avec transparence et efficacité.</p>
 
-<!-- PACKS & COMPARISON -->
-<section id="pricing" class="container">
-  <h3>Packs & Tarifs</h3>
-  <p class="lead">Choisissez le pack qui vous convient — transparence sur les commissions et services inclus.</p>
-
-  <div class="packs-compare fade-up">
-    <div>
-      <div class="pack">
-        <h4>Pack Essentiel</h4>
-        <div style="color:var(--muted)">Accueil & ménage, gestion des réservations.</div>
-        <ul class="features"><li>Accueil & check-in</li><li>Ménage professionnel</li><li>Gestion calendrier</li></ul>
-        <div class="pack-cta"><div style="font-weight:800;font-size:1.05rem;margin-top:6px">15% <span style="font-weight:400;color:var(--muted)">commission</span></div><div style="margin-left:auto"><button class="btn btn-primary" onclick="openBookingForm('Essentiel')">Réserver</button></div></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;margin-top:40px">
+      <div style="background:var(--bg);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);text-align:center">
+        <i class="fa-solid fa-key" style="font-size:32px;color:var(--accent-2);margin-bottom:16px"></i>
+        <h3 style="margin:0 0 10px">Check-in & Check-out</h3>
+        <p style="color:var(--muted)">Accueil des voyageurs, remise des clés, et vérification de l’état du logement à chaque départ.</p>
       </div>
 
-      <div class="pack recommended" style="margin-top:14px">
-        <h4>Pack Premium</h4>
-        <div style="color:var(--muted)">Tout de l'essentiel + optimisation avancée & assistance 24/7.</div>
-        <ul class="features"><li>Tarif dynamique</li><li>Photos pro & annonces optimisées</li><li>Assistance 24/7</li></ul>
-        <div class="pack-cta"><div style="font-weight:800;font-size:1.05rem;margin-top:6px">20% <span style="font-weight:400;color:var(--muted)">commission</span></div><div style="margin-left:auto"><button class="btn btn-primary" onclick="openBookingForm('Premium')">Réserver</button></div></div>
+      <div style="background:var(--bg);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);text-align:center">
+        <i class="fa-solid fa-broom" style="font-size:32px;color:var(--accent-2);margin-bottom:16px"></i>
+        <h3 style="margin:0 0 10px">Ménage professionnel</h3>
+        <p style="color:var(--muted)">Nettoyage complet et gestion du linge par nos équipes partenaires.</p>
       </div>
-    </div>
 
-    <div>
-      <div class="pack">
-        <h4>Pack Luxe</h4>
-        <div style="color:var(--muted)">Service VIP, manager dédié, reporting et support premium.</div>
-        <ul class="features"><li>Gestion complète</li><li>Reporting avancé</li><li>Support dédié</li></ul>
-        <div class="pack-cta"><div style="font-weight:800;font-size:1.05rem;margin-top:6px">25% <span style="font-weight:400;color:var(--muted)">commission</span></div><div style="margin-left:auto"><button class="btn btn-primary" onclick="openBookingForm('Luxe')">Réserver</button></div></div>
+      <div style="background:var(--bg);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);text-align:center">
+        <i class="fa-solid fa-chart-line" style="font-size:32px;color:var(--accent-2);margin-bottom:16px"></i>
+        <h3 style="margin:0 0 10px">Optimisation des revenus</h3>
+        <p style="color:var(--muted)">Ajustement dynamique des tarifs et des disponibilités selon la demande locale et la saison.</p>
+      </div>
+
+      <div style="background:var(--bg);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);text-align:center">
+        <i class="fa-solid fa-comments" style="font-size:32px;color:var(--accent-2);margin-bottom:16px"></i>
+        <h3 style="margin:0 0 10px">Support voyageurs 24/7</h3>
+        <p style="color:var(--muted)">Réponses rapides et assistance aux voyageurs à toute heure.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT / METHOD -->
-<section id="about" class="container fade-up">
-  <h3>Notre méthode</h3>
-  <p class="lead">Simplifiez votre vie et boostez vos revenus : gestion complète et expérience client premium.</p>
-  <div class="method-grid">
-    <div class="step fade-up">1. Analyse & estimation</div>
-    <div class="step fade-up" style="transition-delay:.05s">2. Mise en place de votre annonce</div>
-    <div class="step fade-up" style="transition-delay:.1s">3. Accueil voyageurs & suivi</div>
-    <div class="step fade-up" style="transition-delay:.15s">4. Optimisation & reporting</div>
-  </div>
-</section>
+<!-- PACKS -->
+<section id="pricing" style="padding:80px 20px">
+  <div style="max-width:var(--maxw);margin:0 auto;text-align:center">
+    <h2 style="font-family:Montserrat;font-size:2rem;margin-bottom:10px">Nos packs & tarifs</h2>
+    <p style="color:var(--muted);max-width:700px;margin:0 auto 40px">Choisissez la formule qui correspond à votre besoin. Aucune mauvaise surprise : nos tarifs sont transparents.</p>
 
-<!-- MARKET NEWS CAROUSEL -->
-<section id="news" class="container fade-up">
-  <h3>Actualités du marché</h3>
-  <p class="lead">Les tendances récentes et ce qu’elles signifient pour vos revenus locatifs en Île-de-France.</p>
-  <div class="news-carousel" style="position:relative;overflow:hidden;">
-    <button class="carousel-btn carousel-prev" aria-label="Précédent" style="position:absolute;top:50%;left:0;transform:translateY(-50%);background:var(--accent);color:white;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;z-index:10;"><i class="fas fa-chevron-left"></i></button>
-    <div class="news-carousel-track" style="display:flex;gap:20px;transition:transform .4s ease;">
-      <div class="news-card fade-up" style="flex:0 0 300px;">
-        <h4>Avril 2025 — Rebond des réservations</h4>
-        <p>Plusieurs quartiers parisiens voient une hausse des réservations de courte durée : opportunité pour de meilleurs revenus saisonniers.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:40px">
+      <div style="background:var(--card);padding:36px;border-radius:var(--radius);box-shadow:var(--shadow)">
+        <h3>Pack Essentiel</h3>
+        <p style="font-size:1.3rem;font-weight:700;color:var(--accent-2)">20 % de commission</p>
+        <ul style="list-style:none;padding:0;text-align:left;line-height:1.8">
+          <li>✔ Accueil & remise des clés</li>
+          <li>✔ Ménage & linge</li>
+          <li>✔ Support voyageurs</li>
+        </ul>
+        <button class="btn btn-primary" style="margin-top:20px">Choisir</button>
       </div>
-      <div class="news-card fade-up" style="flex:0 0 300px;">
-        <h4>Mars 2025 — Réglementations locales</h4>
-        <p>Des ajustements administratifs impactent la mise en conformité des annonces : StaynB accompagne la gestion administrative pour vous.</p>
+
+      <div style="background:var(--card);padding:36px;border-radius:var(--radius);box-shadow:var(--shadow);border:2px solid var(--accent-2)">
+        <h3>Pack Premium</h3>
+        <p style="font-size:1.3rem;font-weight:700;color:var(--accent-2)">25 % de commission</p>
+        <ul style="list-style:none;padding:0;text-align:left;line-height:1.8">
+          <li>✔ Tous les services du pack Essentiel</li>
+          <li>✔ Optimisation des prix</li>
+          <li>✔ Photographies professionnelles</li>
+        </ul>
+        <button class="btn btn-primary" style="margin-top:20px">Choisir</button>
       </div>
-      <div class="news-card fade-up" style="flex:0 0 300px;">
-        <h4>Février 2025 — Nouvelles attentes voyageurs</h4>
-        <p>Les voyageurs privilégient les expériences locales et le confort — mise à jour des listings et photos pro recommandées.</p>
+
+      <div style="background:var(--card);padding:36px;border-radius:var(--radius);box-shadow:var(--shadow)">
+        <h3>Pack Luxe</h3>
+        <p style="font-size:1.3rem;font-weight:700;color:var(--accent-2)">30 % de commission</p>
+        <ul style="list-style:none;padding:0;text-align:left;line-height:1.8">
+          <li>✔ Tous les services du pack Premium</li>
+          <li>✔ Décoration & valorisation du bien</li>
+          <li>✔ Gestion complète de A à Z</li>
+        </ul>
+        <button class="btn btn-primary" style="margin-top:20px">Choisir</button>
       </div>
     </div>
-    <button class="carousel-btn carousel-next" aria-label="Suivant" style="position:absolute;top:50%;right:0;transform:translateY(-50%);background:var(--accent-2);color:white;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;z-index:10;"><i class="fas fa-chevron-right"></i></button>
   </div>
 </section>
 
-<!-- LIVE STATS -->
-<section id="live" class="container fade-up">
-  <h3>Indicateur de performance en direct</h3>
-  <p class="lead">Chiffres mis à jour pour suivre rapidement l'impact de notre gestion.</p>
-  <div class="live-indicator">
-    <div class="live-box">
-      <div id="liveRevenue" style="font-size:1.6rem;font-weight:700">0 €</div>
-      <div style="color:var(--muted)">Revenu total généré</div>
-    </div>
-    <div class="live-box">
-      <div id="liveOccupancy" style="font-size:1.6rem;font-weight:700">0%</div>
-      <div style="color:var(--muted)">Taux d'occupation</div>
-    </div>
-    <div class="live-box">
-      <div id="liveClients" style="font-size:1.6rem;font-weight:700">0</div>
-      <div style="color:var(--muted)">Clients satisfaits</div>
-    </div>
-  </div>
-</section>
+<!-- MÉTHODE -->
+<section id="about" style="padding:80px 20px;background:var(--card)">
+  <div style="max-width:var(--maxw);margin:0 auto;text-align:center">
+    <h2 style="font-family:Montserrat;font-size:2rem;margin-bottom:10px">Notre méthode</h2>
+    <p style="color:var(--muted);max-width:700px;margin:0 auto 40px">Nous simplifions votre gestion en trois étapes simples.</p>
 
-<!-- SHARE SECTION -->
-<section id="share" class="container fade-up">
-  <h3>Partager StaynB</h3>
-  <p class="lead">Aidez-nous à faire connaître StaynB — partagez sur vos réseaux.</p>
-  <div class="share-buttons" role="navigation" aria-label="Partager">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.staynB.fr" target="_blank" rel="noopener noreferrer" class="share-facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
-    <a href="https://twitter.com/intent/tweet?url=https://www.staynB.fr&text=Découvrez%20StaynB%20!" target="_blank" rel="noopener noreferrer" class="share-twitter"><i class="fab fa-twitter"></i> Twitter</a>
-    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.staynB.fr" target="_blank" rel="noopener noreferrer" class="share-linkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section class="container fade-up">
-  <h3>Avis clients</h3>
-  <div class="reviews">
-    <div class="review-card fade-up">
-      <strong>Marie D.</strong>
-      <div class="stars">★★★★★</div>
-      <p>Service impeccable, communication excellente, revenus en hausse !</p>
-    </div>
-    <div class="review-card fade-up" style="transition-delay:.05s">
-      <strong>Jean P.</strong>
-      <div class="stars">★★★★★</div>
-      <p>Très satisfait du suivi et de la gestion complète de mon appartement.</p>
-    </div>
-    <div class="review-card fade-up" style="transition-delay:.1s">
-      <strong>Lucie V.</strong>
-      <div class="stars">★★★★★</div>
-      <p>Accueil parfait et optimisation de mes annonces au top !</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;margin-top:40px">
+      <div style="background:var(--bg);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)">
+        <div style="font-size:2rem;font-weight:700;color:var(--accent-2)">1</div>
+        <h3>Estimation gratuite</h3>
+        <p style="color:var(--muted)">Recevez une estimation claire de vos revenus potentiels en quelques clics.</p>
+      </div>
+      <div style="background:var(--bg);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)">
+        <div style="font-size:2rem;font-weight:700;color:var(--accent-2)">2</div>
+        <h3>Signature du contrat</h3>
+        <p style="color:var(--muted)">Nous mettons en place la gestion complète de votre bien.</p>
+      </div>
+      <div style="background:var(--bg);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)">
+        <div style="font-size:2rem;font-weight:700;color:var(--accent-2)">3</div>
+        <h3>Suivi & résultats</h3>
+        <p style="color:var(--muted)">Suivi mensuel transparent, ajustements et rapports de performance.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PARTNERS -->
-<section class="container fade-up">
-  <h3>Nos partenaires</h3>
-  <div class="partners">
-    <a href="https://www.airbnb.com" target="_blank" rel="noopener noreferrer" class="partner-card airbnb" aria-label="Airbnb">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb logo"> Airbnb
-    </a>
-    <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="partner-card google" aria-label="Google">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google logo"> Google
-    </a>
+<!-- ACTUALITÉS -->
+<section id="news" style="padding:80px 20px">
+  <div style="max-width:var(--maxw);margin:0 auto;text-align:center">
+    <h2 style="font-family:Montserrat;font-size:2rem;margin-bottom:10px">Actualités du marché</h2>
+    <p style="color:var(--muted);max-width:700px;margin:0 auto 40px">Restez informé des tendances et des changements dans la location courte durée en Île-de-France.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:40px;text-align:left">
+      <article style="background:var(--card);padding:26px;border-radius:var(--radius);box-shadow:var(--shadow)">
+        <h3 style="margin-top:0">Hausse de la demande en 2025</h3>
+        <p style="color:var(--muted)">Les réservations augmentent de 12 % à Paris et en banlieue proche. Une excellente nouvelle pour les hôtes !</p>
+      </article>
+      <article style="background:var(--card);padding:26px;border-radius:var(--radius);box-shadow:var(--shadow)">
+        <h3 style="margin-top:0">Nouvelles réglementations</h3>
+        <p style="color:var(--muted)">Les communes franciliennes renforcent le contrôle des meublés de tourisme : StaynB vous guide dans la conformité.</p>
+      </article>
+      <article style="background:var(--card);padding:26px;border-radius:var(--radius);box-shadow:var(--shadow)">
+        <h3 style="margin-top:0">Tendances déco 2025</h3>
+        <p style="color:var(--muted)">La décoration scandinave et les matériaux naturels séduisent de plus en plus de voyageurs.</p>
+      </article>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  &copy; 2025 StaynB. Tous droits réservés.
-</footer>
-
-<!-- BACK TO TOP -->
-<div class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut"><i class="fas fa-chevron-up"></i></div>
-
-<!-- MODALS -->
-<div id="estimateModal">
-  <div class="modal-box">
-    <span class="modal-close" onclick="closeModal('estimateModal')">&times;</span>
-    <h3>Demande d'estimation</h3>
-    <form>
-      <input type="text" placeholder="Nom complet" required>
-      <input type="email" placeholder="Email" required>
-      <input type="tel" placeholder="Téléphone">
-      <textarea placeholder="Votre message"></textarea>
-      <button class="btn btn-primary" type="submit">Envoyer</button>
-    </form>
+<!-- PARTENAIRES -->
+<section id="share" style="padding:60px 20px;background:var(--card)">
+  <div style="max-width:var(--maxw);margin:0 auto;text-align:center">
+    <h2 style="font-family:Montserrat;font-size:2rem;margin-bottom:10px">Nos partenaires</h2>
+    <p style="color:var(--muted);max-width:700px;margin:0 auto 40px">Nous travaillons avec les meilleures plateformes du secteur.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:center;opacity:0.9">
+      <img src="media/airbnb.png" alt="Airbnb" style="height:40px">
+      <img src="media/booking.png" alt="Booking" style="height:40px">
+      <img src="media/google.png" alt="Google" style="height:40px">
+    </div>
   </div>
-</div>
+</section>
 
-<div id="bookingModal">
-  <div class="modal-box">
-    <span class="modal-close" onclick="closeModal('bookingModal')">&times;</span>
-    <h3>Réserver un pack</h3>
-    <form>
-      <input type="text" placeholder="Nom complet" required>
-      <input type="email" placeholder="Email" required>
-      <select required>
-        <option value="">Sélectionnez votre pack</option>
-        <option value="Essentiel">Essentiel</option>
-        <option value="Premium">Premium</option>
-        <option value="Luxe">Luxe</option>
+<!-- Bouton retour haut -->
+<button id="backToTop" style="position:fixed;bottom:20px;right:20px;background:var(--accent-2);color:white;border:none;border-radius:50%;width:45px;height:45px;font-size:18px;cursor:pointer;display:none;box-shadow:var(--shadow)">↑</button>
+
+<!-- FORMULAIRE POPUP -->
+<div id="popupForm" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(3px);align-items:center;justify-content:center;z-index:2000;">
+  <div style="background:var(--card);padding:32px;border-radius:var(--radius);box-shadow:var(--shadow);max-width:420px;width:90%;position:relative;">
+    <button id="closeForm" style="position:absolute;top:10px;right:10px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted)">✕</button>
+    <h3 style="margin-top:0;font-family:Montserrat;font-size:1.4rem;">Demande d’estimation</h3>
+    <p style="color:var(--muted);margin-bottom:20px">Remplissez ce court formulaire et notre équipe vous contactera rapidement.</p>
+
+    <form id="formStaynB">
+      <label>Nom complet</label>
+      <input type="text" name="nom" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:12px">
+
+      <label>Email</label>
+      <input type="email" name="email" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:12px">
+
+      <label>Type de pack souhaité</label>
+      <select name="pack" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:12px">
+        <option value="Estimation simple">Estimation simple</option>
+        <option value="Essentiel">Pack Essentiel</option>
+        <option value="Premium">Pack Premium</option>
+        <option value="Luxe">Pack Luxe</option>
       </select>
-      <textarea placeholder="Votre message"></textarea>
-      <button class="btn btn-primary" type="submit">Réserver</button>
+
+      <label>Message (facultatif)</label>
+      <textarea name="message" rows="3" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:18px"></textarea>
+
+      <button type="submit" class="btn btn-primary" style="width:100%">Envoyer</button>
     </form>
+
+    <div id="formMessage" style="display:none;color:green;font-weight:600;margin-top:10px;text-align:center">Merci ! Votre message a été envoyé.</div>
   </div>
 </div>
 
-<div id="contactModal">
-  <div class="modal-box">
-    <span class="modal-close" onclick="closeModal('contactModal')">&times;</span>
-    <h3>Nous contacter</h3>
-    <form>
-      <input type="text" placeholder="Nom complet" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Votre message" required></textarea>
-      <button class="btn btn-primary" type="submit">Envoyer</button>
-    </form>
-  </div>
-</div>
-
+<!-- SCRIPTS D’INTERACTION -->
 <script>
-// Modal control
-function openBookingForm(pack){
-  document.getElementById('bookingModal').classList.add('show');
-  document.querySelector('#bookingModal select').value = pack;
-}
-function closeModal(id){
-  document.getElementById(id).classList.remove('show');
-}
+// Ciblage des éléments
+const popup = document.getElementById('popupForm');
+const closeBtn = document.getElementById('closeForm');
+const form = document.getElementById('formStaynB');
+const formMsg = document.getElementById('formMessage');
 
-// Back to top
-window.addEventListener('scroll',()=>{
-  document.querySelector('.backtop').style.display = window.scrollY > 200 ? 'flex' : 'none';
+// Ouverture du popup depuis les boutons
+document.getElementById('ctaEstimate').onclick = () => openPopup('Estimation simple');
+document.getElementById('ctaPacks').onclick = () => document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+
+// Boutons “Choisir” des packs
+document.querySelectorAll('#pricing .btn-primary').forEach((btn, index) => {
+  const packNames = ['Essentiel', 'Premium', 'Luxe'];
+  btn.addEventListener('click', () => openPopup(packNames[index]));
 });
 
-// Carousel
-let track = document.querySelector('.news-carousel-track');
-let index = 0;
-const total = track ? track.children.length : 0;
-if(track){
-  document.querySelector('.carousel-next').onclick = () => {
-    index = (index + 1) % total;
-    track.style.transform = `translateX(${-index * 320}px)`;
-  };
-  document.querySelector('.carousel-prev').onclick = () => {
-    index = (index - 1 + total) % total;
-    track.style.transform = `translateX(${-index * 320}px)`;
-  };
+// Fonction d’ouverture
+function openPopup(pack){
+  popup.style.display = 'flex';
+  document.querySelector('select[name="pack"]').value = pack;
+  document.body.style.overflow = 'hidden';
 }
 
-// Fade-up animation
-const faders = document.querySelectorAll('.fade-up');
-const options = { threshold: 0.2 };
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) {
-      entry.target.classList.add('show');
-      observer.unobserve(entry.target);
-    }
+// Fermeture
+closeBtn.onclick = () => closePopup();
+popup.onclick = (e) => { if(e.target === popup) closePopup(); };
+function closePopup(){
+  popup.style.display = 'none';
+  document.body.style.overflow = '';
+  form.reset();
+  formMsg.style.display = 'none';
+}
+
+// Soumission du formulaire (simulation)
+form.onsubmit = (e)=>{
+  e.preventDefault();
+  formMsg.style.display = 'block';
+  setTimeout(()=>closePopup(), 2000);
+};
+
+// Bouton retour haut
+const btnTop = document.getElementById('backToTop');
+window.addEventListener('scroll', ()=>{
+  btnTop.style.display = window.scrollY > 400 ? 'block' : 'none';
+});
+btnTop.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// Animation fade-up au scroll
+const fadeEls = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('visible');
   });
-}, options);
-faders.forEach(fader => observer.observe(fader));
-
-// Live stats simulation
-let rev = 0, occ = 0, cli = 0;
-setInterval(() => {
-  rev = Math.min(1650, rev + Math.floor(Math.random() * 20));
-  occ = Math.min(78, occ + Math.random() * 0.5);
-  cli = Math.min(120, cli + 1);
-  const revEl = document.getElementById('liveRevenue');
-  const occEl = document.getElementById('liveOccupancy');
-  const cliEl = document.getElementById('liveClients');
-  if(revEl) revEl.innerText = `${rev} €`;
-  if(occEl) occEl.innerText = `${occ.toFixed(1)}%`;
-  if(cliEl) cliEl.innerText = `${cli}`;
-}, 1000);
-
-// Activation des boutons
-const ctaEstimate = document.getElementById('ctaEstimate');
-if(ctaEstimate) ctaEstimate.addEventListener('click', function() {
-  const em = document.getElementById('estimateModal');
-  if(em) em.classList.add('show');
-});
-const ctaPacks = document.getElementById('ctaPacks');
-if(ctaPacks) ctaPacks.addEventListener('click', function() {
-  const pricing = document.getElementById('pricing');
-  if(pricing) pricing.scrollIntoView({ behavior: 'smooth' });
-});
-const ctaContact = document.getElementById('ctaContact');
-if(ctaContact) ctaContact.addEventListener('click', function() {
-  const cm = document.getElementById('contactModal');
-  if(cm) cm.classList.add('show');
-});
+},{threshold:0.2});
+fadeEls.forEach(el=>observer.observe(el));
 </script>
+<!-- ton dernier contenu -->
+<section id="partners"> ... </section>
+
+<!-- 🧠 Script EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("TA_PUBLIC_KEY_ICI"); // remplace par ta vraie clé publique
+  })();
+
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.send("TON_SERVICE_ID", "TON_TEMPLATE_ID", {
+      from_name: document.getElementById("nom").value,
+      from_email: document.getElementById("email").value,
+      pack: document.getElementById("pack").value,
+      message: document.getElementById("message").value,
+    })
+    .then(function(response) {
+      alert("Message envoyé avec succès !");
+    }, function(error) {
+      alert("Erreur lors de l’envoi, veuillez réessayer.");
+      console.error("Erreur EmailJS :", error);
+    });
+  });
+</script>
+
+<!-- Script EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("c7u1iGY5Xb11xroE9"); // remplace par ta vraie clé publique
+  })();
+
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.send("service_4rt1ri7", "template_0e03vni", {
+      from_name: document.getElementById("nom").value,
+      from_email: document.getElementById("email").value,
+      pack: document.getElementById("pack").value,
+      message: document.getElementById("message").value,
+    })
+    .then(function(response) {
+      alert("✅ Message envoyé avec succès !");
+      document.getElementById("popupForm").style.display = "none";
+      document.getElementById("contactForm").reset();
+    }, function(error) {
+      alert("❌ Erreur lors de l’envoi, veuillez réessayer.");
+      console.error("Erreur EmailJS :", error);
+    });
+  });
+</script>
+
 </body>
 </html>
