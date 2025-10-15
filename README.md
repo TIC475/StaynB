@@ -408,33 +408,37 @@ const observer = new IntersectionObserver((entries)=>{
 },{threshold:0.2});
 fadeEls.forEach(el=>observer.observe(el));
 </script>
+
 <!-- ton dernier contenu -->
 <section id="partners"> ... </section>
 
-<!-- 🧠 Script EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  (function(){
-    emailjs.init("TA_PUBLIC_KEY_ICI"); // remplace par ta vraie clé publique
-  })();
+<!-- Formulaire popup -->
+<div id="popupForm" style="display:none">
+  <div style="background:white;max-width:420px;margin:100px auto;padding:30px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,0.15);position:relative">
+    <button id="closePopup" style="position:absolute;top:10px;right:10px;border:none;background:none;font-size:1.5rem;cursor:pointer;">×</button>
+    <h3 style="margin-top:0;text-align:center;font-family:Montserrat">Demande d'estimation</h3>
 
-  document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+    <form id="contactForm">
+      <label for="nom">Nom complet</label>
+      <input type="text" id="nom" name="nom" required style="width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc">
 
-    emailjs.send("TON_SERVICE_ID", "TON_TEMPLATE_ID", {
-      from_name: document.getElementById("nom").value,
-      from_email: document.getElementById("email").value,
-      pack: document.getElementById("pack").value,
-      message: document.getElementById("message").value,
-    })
-    .then(function(response) {
-      alert("Message envoyé avec succès !");
-    }, function(error) {
-      alert("Erreur lors de l’envoi, veuillez réessayer.");
-      console.error("Erreur EmailJS :", error);
-    });
-  });
-</script>
+      <label for="email">Adresse e-mail</label>
+      <input type="email" id="email" name="email" required style="width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc">
+
+      <label for="pack">Pack souhaité</label>
+      <select id="pack" name="pack" required style="width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc">
+        <option value="Essentiel">Pack Essentiel</option>
+        <option value="Premium">Pack Premium</option>
+        <option value="Luxe">Pack Luxe</option>
+      </select>
+
+      <label for="message">Votre message</label>
+      <textarea id="message" name="message" rows="4" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc"></textarea>
+
+      <button type="submit" style="width:100%;margin-top:12px;padding:10px;background:#007bff;color:white;border:none;border-radius:8px;cursor:pointer;">Envoyer</button>
+    </form>
+  </div>
+</div>
 
 <!-- Script EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
