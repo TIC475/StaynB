@@ -405,45 +405,44 @@ fadeEls.forEach(el=>observer.observe(el));
 <!-- Script EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function() {
   // Initialisation EmailJS
-  (function(){
-    emailjs.init("c7u1iGY5Xb11xroE9"); // ta clé publique
-  })();
+  emailjs.init("c7u1iGY5Xb11xroE9"); // ta clé publique
 
-  // Récupération du vrai formulaire visible
-  const form = document.getElementById("formStaynB");
+  const formStaynB = document.getElementById("formStaynB");
   const formMsg = document.getElementById("formMessage");
 
-  form.addEventListener("submit", function(e) {
+  formStaynB.addEventListener("submit", function(e) {
     e.preventDefault();
-    
-    console.log("📤 Tentative d'envoi EmailJS avec : ", {
-  from_name: form.nom.value,
-  from_email: form.email.value,
-  pack: form.pack.value,
-  message: form.message.value,
-});
 
-    // Envoi EmailJS avec ton service et template
+    console.log("📤 Tentative d'envoi EmailJS avec : ", {
+      from_name: formStaynB.nom.value,
+      from_email: formStaynB.email.value,
+      pack: formStaynB.pack.value,
+      message: formStaynB.message.value,
+    });
+
     emailjs.send("service_4rt1ri7", "template_0e03vni", {
-      from_name: form.nom.value,
-      from_email: form.email.value,
-      pack: form.pack.value,
-      message: form.message.value,
+      from_name: formStaynB.nom.value,
+      from_email: formStaynB.email.value,
+      pack: formStaynB.pack.value,
+      message: formStaynB.message.value,
     })
     .then(function(response) {
       console.log("✅ Réponse EmailJS :", response);
       formMsg.style.display = "block";
       setTimeout(() => {
         formMsg.style.display = "none";
-        form.reset();
+        formStaynB.reset();
         document.getElementById("popupForm").style.display = "none";
       }, 2000);
-    }, function(error) {
+    })
+    .catch(function(error) {
       console.error("❌ Erreur EmailJS :", error);
-      alert("❌ Erreur lors de l’envoi, vérifie la console.");
+      alert("Erreur lors de l’envoi. Vérifie la console.");
     });
   });
+});
 </script>
 </body>
 </html>
