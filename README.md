@@ -105,20 +105,14 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
 <!-- HEADER -->
 <header>
   <div class="brand" aria-label="StaynB">
-    <div class="logo-mark">SB</div>
+    <a href="https://stayn-b.github.io/" class="logo-link">
+      <img src="./image0.png" alt="Logo StaynB" style="height:48px; vertical-align:middle; border-radius:10px;">
+    </a>
     <div>
       <h1>StaynB</h1>
       <div style="font-size:12px;color:var(--muted)">Conciergerie • Île-de-France</div>
     </div>
   </div>
-  <nav aria-label="Navigation principale">
-    <a href="#services">Services</a>
-    <a href="#pricing">Packs</a>
-    <a href="#about">À propos</a>
-    <a href="#news">Actualités</a>
-    <a href="#share">Partager</a>
-    <button class="cta-quick" id="ctaContact">Nous contacter</button>
-  </nav>
 </header>
 
 <!-- HERO -->
@@ -306,14 +300,64 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
 <section id="share" style="padding:60px 20px;background:var(--card)">
   <div style="max-width:var(--maxw);margin:0 auto;text-align:center">
     <h2 style="font-family:Montserrat;font-size:2rem;margin-bottom:10px">Nos partenaires</h2>
-    <p style="color:var(--muted);max-width:700px;margin:0 auto 40px">Nous travaillons avec les meilleures plateformes du secteur.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:center;opacity:0.9">
-      <img src="media/airbnb.png" alt="Airbnb" style="height:40px">
-      <img src="media/booking.png" alt="Booking" style="height:40px">
-      <img src="media/google.png" alt="Google" style="height:40px">
+    <p style="color:var(--muted);max-width:700px;margin:0 auto 40px">
+      Nous travaillons avec les meilleures plateformes du secteur.
+    </p>
+
+    <div class="partners-container" style="display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:center;">
+      <a href="https://www.airbnb.fr" target="_blank" rel="noopener noreferrer" class="partner-link">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/768px-Airbnb_Logo_B%C3%A9lo.svg.png?20230603231949" alt="Airbnb">
+      </a>
+      <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" class="partner-link">
+        <img src="https://cdn.worldvectorlogo.com/logos/bookingcom-1.svg" alt="Booking.com">
+      </a>
+      <a href="https://www.google.com/travel/" target="_blank" rel="noopener noreferrer" class="partner-link">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+      </a>
+      <a href="https://www.tripadvisor.fr" target="_blank" rel="noopener noreferrer" class="partner-link">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/TripAdvisor_Logo.svg/1200px-TripAdvisor_Logo.svg.png?20211022033421" alt="TripAdvisor">
+      </a>
+      <a href="https://www.expedia.fr" target="_blank" rel="noopener noreferrer" class="partner-link">
+        <img src="https://cdn.worldvectorlogo.com/logos/expedia.svg" alt="Expedia">
+      </a>
     </div>
   </div>
 </section>
+
+<style>
+.partner-link {
+  position: relative;
+  display: inline-block;
+}
+
+.partner-link img {
+  height: 40px;
+  transition: transform 0.4s ease;
+}
+
+.partner-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-25deg);
+  transition: left 0.75s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.partner-link:hover::before {
+  left: 125%;
+  opacity: 1;
+}
+
+.partner-link:hover img {
+  transform: scale(1.08);
+}
+</style>
 
 <!-- Bouton retour haut -->
 <button id="backToTop" style="position:fixed;bottom:20px;right:20px;background:var(--accent-2);color:white;border:none;border-radius:50%;width:45px;height:45px;font-size:18px;cursor:pointer;display:none;box-shadow:var(--shadow)">↑</button>
