@@ -106,7 +106,7 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
 <header>
   <div class="brand" aria-label="StaynB">
     <a href="https://stayn-b.github.io/" class="logo-link">
-      <img src="./image0.png" alt="Logo StaynB" style="height:48px; vertical-align:middle; border-radius:10px;">
+      <img src="./image0.png" alt="Logo StaynB" style="height:70px; vertical-align:middle; border-radius:10px;">
     </a>
     <div>
       <h1>StaynB</h1>
