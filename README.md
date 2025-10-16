@@ -103,6 +103,21 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
   width: 100% !important;
   margin: 0 auto;
 }
+  /* ==== LOGO STAYNB ==== */
+.logo-img {
+  width: 60px;           /* taille fixe du cadre */
+  height: 60px;
+  object-fit: contain;   /* garde le logo entier sans le couper */
+  border-radius: 12px;   /* optionnel : arrondi doux */
+  background: white;     /* optionnel : fond clair */
+  padding: 4px;          /* optionnel : espace autour */
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 </style>
 </head>
 
