@@ -19,7 +19,7 @@
   --accent-2:#FF5A5F;
   --shadow:0 8px 24px rgba(18,23,44,0.06);
   --radius:14px;
-  --maxw:90vw;
+  --maxw:3000px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
