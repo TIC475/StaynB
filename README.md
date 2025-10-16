@@ -97,6 +97,12 @@ nav a{font-weight:600;font-size:0.95rem;padding:8px 10px;border-radius:8px;text-
   opacity: 1;
   transform: translateY(0);
 }
+  /* Correction largeur GitHub Pages */
+.container-lg {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto;
+}
 </style>
 </head>
 
